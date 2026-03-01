@@ -1,0 +1,410 @@
+/* 肝炎個案追蹤 - Modern Dashboard 樣式 */
+
+:root {
+  --color-bg: #f0f2f5;
+  --color-sidebar: #1a2332;
+  --color-sidebar-hover: #243044;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-card: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-prompt-warn: #f59e0b;
+  --color-prompt-info: #0ea5e9;
+  --color-prompt-success: #10b981;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --font-sans: "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+/* Layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: var(--color-sidebar);
+  color: #e5e7eb;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.sidebar-nav {
+  padding: 0.75rem 0;
+}
+
+.nav-item {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: var(--color-sidebar-hover);
+  color: #fff;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  overflow-x: hidden;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Cards */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Search */
+.search-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.search-message {
+  margin-top: 0.5rem;
+  font-size: 13px;
+}
+
+.search-message.error {
+  color: #dc2626;
+}
+
+.search-message.success {
+  color: var(--color-prompt-success);
+}
+
+/* Patient Info */
+.patient-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem 1.5rem;
+}
+
+.patient-info .info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.patient-info .info-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.patient-info .info-value {
+  font-weight: 500;
+}
+
+.empty-state {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Block with right panel - 50/50 佈局 */
+.block-with-panel {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.block-main {
+  flex: 0 0 50%;
+  width: 50%;
+  min-width: 0;
+}
+
+.panel-right {
+  flex: 0 0 50%;
+  width: 50%;
+  min-width: 0;
+  background: #f9fafb;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* 右側面板始終顯示，預留 50% 空間 */
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #f3f4f6;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.panel-header h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.btn-close:hover {
+  color: var(--color-text);
+}
+
+.panel-content {
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.data-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.data-table .link-cell {
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.data-table .link-cell:hover {
+  color: var(--color-primary-hover);
+}
+
+.data-table .clickable-row {
+  cursor: pointer;
+}
+
+.data-table .clickable-row:hover {
+  background: #eff6ff;
+}
+
+/* 異常值 / 陽性警示顏色 */
+.value-abnormal {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.history-list .history-value.value-abnormal {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* History list in panel */
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.history-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+
+.history-list li:last-child {
+  border-bottom: none;
+}
+
+.history-list .history-value {
+  font-weight: 500;
+}
+
+.history-list .history-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.history-list .history-ref {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.panel-content-flex .report-textarea {
+  min-height: 250px;
+}
+
+/* Report textarea */
+.report-textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  resize: vertical;
+  background: #fff;
+}
+
+/* Logic Prompt */
+.logic-prompt {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.logic-prompt.prompt-warn {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.logic-prompt.prompt-info {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+}
+
+.logic-prompt.prompt-success {
+  background: #d1fae5;
+  color: #047857;
+  border: 1px solid #6ee7b7;
+}
+
+.prompt-card:empty,
+.prompt-card .logic-prompt:empty {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .block-with-panel {
+    flex-direction: column;
+  }
+
+  .block-main,
+  .panel-right {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 72px;
+  }
+
+  .logo,
+  .nav-item span {
+    display: none;
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>肝炎個案追蹤系統</title>
+  <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- 側邊欄 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">肝炎個管</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active">個案追蹤</a>
+      </nav>
+    </aside>
+
+    <!-- 主內容區 -->
+    <main class="main-content">
+      <header class="page-header">
+        <h2>肝炎個案追蹤</h2>
+      </header>
+
+      <!-- 檢索區 -->
+      <section class="card search-card">
+        <h3>病人檢索</h3>
+        <div class="search-form">
+          <input type="text" id="searchInput" placeholder="輸入身分證字號或病歷號" class="search-input">
+          <button type="button" id="searchBtn" class="btn btn-primary">查詢</button>
+        </div>
+        <div id="searchMessage" class="search-message" aria-live="polite"></div>
+      </section>
+
+      <!-- 病人基本資料 -->
+      <section class="card patient-card" id="patientCard">
+        <h3>病人基本資料</h3>
+        <div id="patientInfo" class="patient-info">
+          <p class="empty-state">請輸入身分證字號或病歷號進行查詢</p>
+        </div>
+      </section>
+
+      <!-- 肝炎追蹤項目 + 右側歷程面板 -->
+      <section class="card tracking-section">
+        <div class="block-with-panel">
+          <div class="block-main">
+            <h3>肝炎追蹤項目</h3>
+            <div class="table-wrapper">
+              <table class="data-table" id="hepatitisTable">
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>值</th>
+                    <th>參考值</th>
+                    <th>日期</th>
+                    <th>檢驗歷程</th>
+                  </tr>
+                </thead>
+                <tbody id="hepatitisTableBody">
+                  <!-- 由 JS 動態產生 -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <aside class="panel-right" id="historyPanel">
+            <div class="panel-header">
+              <h4 id="historyPanelTitle">檢驗歷程 / 報告內容</h4>
+              <button type="button" class="btn-close" id="closeHistoryPanel" aria-label="關閉">×</button>
+            </div>
+            <div class="panel-content panel-content-flex" id="historyPanelContent">
+              <p class="empty-state">點擊「檢驗歷程」或「檢視報告」查看內容</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 腹部檢驗報告 + 右側報告面板 -->
+      <section class="card abdominal-section">
+        <div class="block-with-panel">
+          <div class="block-main">
+            <h3>腹部檢驗報告</h3>
+            <div class="table-wrapper">
+              <table class="data-table" id="abdominalTable">
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>日期</th>
+                  </tr>
+                </thead>
+                <tbody id="abdominalTableBody">
+                  <!-- 由 JS 動態產生 -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <aside class="panel-right" id="reportPanel">
+            <div class="panel-header">
+              <h4 id="reportPanelTitle">報告內容</h4>
+              <button type="button" class="btn-close" id="closeReportPanel" aria-label="關閉">×</button>
+            </div>
+            <div class="panel-content">
+              <textarea id="reportContent" class="report-textarea" readonly placeholder="點擊報告列或肝炎追蹤項目之「檢視報告」查看完整內容"></textarea>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 個案管理邏輯提示（顯示於個案管理代碼開立歷程上方） -->
+      <section class="card prompt-card" id="promptCard" style="display: none;">
+        <div id="logicPrompt" class="logic-prompt" role="alert">
+          <!-- 由 JS 依邏輯判斷顯示 -->
+        </div>
+      </section>
+
+      <!-- 個案管理代碼開立歷程 -->
+      <section class="card code-section">
+        <h3>個案管理代碼開立歷程</h3>
+        <div class="table-wrapper">
+          <table class="data-table" id="codeTable">
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th>開立日期</th>
+                <th>看診醫師</th>
+                <th>看診科別</th>
+                <th>看診時段</th>
+              </tr>
+            </thead>
+            <tbody id="codeTableBody">
+              <!-- 由 JS 動態產生 -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>
