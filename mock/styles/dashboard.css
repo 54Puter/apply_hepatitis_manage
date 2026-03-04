@@ -162,6 +162,121 @@ body {
   color: var(--color-prompt-success);
 }
 
+/* Patient + FIB-4 Layout: 75% / 25% */
+.patient-fib4-layout {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.patient-block {
+  flex: 0 0 75%;
+  width: 75%;
+  min-width: 0;
+}
+
+.fib4-block {
+  flex: 0 0 25%;
+  width: 25%;
+  min-width: 0;
+  background: #f9fafb;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.fib4-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.fib4-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fib4-row label {
+  flex: 0 0 90px;
+  font-size: 13px;
+}
+
+.fib4-input {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.fib4-result {
+  padding: 0.5rem 0;
+  font-weight: 600;
+}
+
+.fib4-result-value {
+  font-size: 1.1rem;
+}
+
+.fib4-desc {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Filter buttons */
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.btn-filter {
+  padding: 0.4rem 0.75rem;
+  font-size: 13px;
+  background: #f3f4f6;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-filter:hover {
+  background: #e5e7eb;
+}
+
+.btn-filter.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* Collapsible rows */
+.tr-group-header {
+  cursor: pointer;
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.tr-group-header:hover {
+  background: #e5e7eb;
+}
+
+.tr-group-header .toggle-icon {
+  display: inline-block;
+  width: 1em;
+  margin-right: 0.25rem;
+  transition: transform 0.2s;
+}
+
+.tr-group-header.collapsed .toggle-icon {
+  transform: rotate(-90deg);
+}
+
+.tr-group-row.collapsed {
+  display: none;
+}
+
 /* Patient Info */
 .patient-info {
   display: grid;
@@ -251,6 +366,13 @@ body {
 
 /* Tables */
 .table-wrapper {
+  overflow-x: auto;
+}
+
+/* 預留 5 個項目長度，超過則顯示 scrollbar */
+.table-scroll-5 {
+  max-height: 220px;
+  overflow-y: auto;
   overflow-x: auto;
 }
 
@@ -389,6 +511,16 @@ body {
 
 /* Responsive */
 @media (max-width: 900px) {
+  .patient-fib4-layout {
+    flex-direction: column;
+  }
+
+  .patient-block,
+  .fib4-block {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
   .block-with-panel {
     flex-direction: column;
   }

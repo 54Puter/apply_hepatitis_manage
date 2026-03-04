@@ -34,11 +34,41 @@
         <div id="searchMessage" class="search-message" aria-live="polite"></div>
       </section>
 
-      <!-- 病人基本資料 -->
-      <section class="card patient-card" id="patientCard">
-        <h3>病人基本資料</h3>
-        <div id="patientInfo" class="patient-info">
-          <p class="empty-state">請輸入身分證字號或病歷號進行查詢</p>
+      <!-- 病人基本資料 + FIB-4 計算 -->
+      <section class="card patient-section">
+        <div class="patient-fib4-layout">
+          <div class="patient-block">
+            <h3>病人基本資料</h3>
+            <div id="patientInfo" class="patient-info">
+              <p class="empty-state">請輸入身分證字號或病歷號進行查詢</p>
+            </div>
+          </div>
+          <aside class="fib4-block">
+            <h3>FIB-4 計算</h3>
+            <div class="fib4-form">
+              <div class="fib4-row">
+                <label for="fib4Age">年齡</label>
+                <input type="number" id="fib4Age" class="fib4-input" min="0" placeholder="-">
+              </div>
+              <div class="fib4-row">
+                <label for="fib4AST">AST (S-GOT)</label>
+                <input type="number" id="fib4AST" class="fib4-input" min="0" step="0.1" placeholder="-">
+              </div>
+              <div class="fib4-row">
+                <label for="fib4ALT">ALT (S-GPT)</label>
+                <input type="number" id="fib4ALT" class="fib4-input" min="0" step="0.1" placeholder="-">
+              </div>
+              <div class="fib4-row">
+                <label for="fib4PLT">PLT (10⁹/L)</label>
+                <input type="number" id="fib4PLT" class="fib4-input" min="0" placeholder="-">
+              </div>
+            </div>
+            <div class="fib4-result">
+              <span class="fib4-result-label">結果：</span>
+              <span id="fib4Result" class="fib4-result-value">-</span>
+            </div>
+            <div id="fib4Desc" class="fib4-desc"></div>
+          </aside>
         </div>
       </section>
 
@@ -47,6 +77,11 @@
         <div class="block-with-panel">
           <div class="block-main">
             <h3>肝炎追蹤項目</h3>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-filter active" data-mode="general">一般肝炎</button>
+              <button type="button" class="btn btn-filter" data-mode="hbv">HBV 追蹤</button>
+              <button type="button" class="btn btn-filter" data-mode="hcv">HCV 追蹤</button>
+            </div>
             <div class="table-wrapper">
               <table class="data-table" id="hepatitisTable">
                 <thead>
@@ -76,16 +111,17 @@
         </div>
       </section>
 
-      <!-- 腹部檢驗報告 + 右側報告面板 -->
+      <!-- 腹部影像報告 + 右側報告面板 -->
       <section class="card abdominal-section">
         <div class="block-with-panel">
           <div class="block-main">
-            <h3>腹部檢驗報告</h3>
-            <div class="table-wrapper">
+            <h3>腹部影像報告</h3>
+            <div class="table-wrapper table-scroll-5">
               <table class="data-table" id="abdominalTable">
                 <thead>
                   <tr>
                     <th>項目</th>
+                    <th>醫令代碼</th>
                     <th>日期</th>
                   </tr>
                 </thead>
@@ -117,7 +153,7 @@
       <!-- 個案管理代碼開立歷程 -->
       <section class="card code-section">
         <h3>個案管理代碼開立歷程</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper table-scroll-5">
           <table class="data-table" id="codeTable">
             <thead>
               <tr>
